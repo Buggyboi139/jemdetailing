@@ -3,437 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>J.E.M Signature Detailing | Mobile Interior Detailing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>J.E.M Signature Detailing | Mobile Interior</title>
+    
     <style>
-        /* Base Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
         :root {
-            --bg-dark: #0f172a;
-            --bg-card: #1e293b;
-            --text-light: #f8fafc;
+            --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --highlight: #eab308;
+            --surface-glass: rgba(30, 41, 59, 0.4);
+            --surface-solid: rgba(15, 23, 42, 0.6);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(255, 255, 255, 0.2);
+            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --gradient-primary: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            --radius-lg: 32px;
+            --radius-md: 20px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-weight: 700;
-        }
-
-        a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
-                        url('https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
-            height: 80vh;
-            min-height: 500px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-main);
+            background-color: #07090f;
+            /* Sleek dark blue/cyan glowing background */
+            background-image: radial-gradient(at 0% 0%, rgba(161, 196, 253, 0.15) 0, transparent 40%), 
+                              radial-gradient(at 100% 0%, rgba(194, 233, 251, 0.1) 0, transparent 40%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-left: 20px; 
             display: flex;
-            align-items: center;
-            text-align: center;
-            border-bottom: 4px solid var(--accent);
+            flex-direction: column;
         }
 
-        .hero-content {
-            width: 100%;
+        #left-color-bar {
+            position: fixed; top: 0; left: 0; bottom: 0; width: 4px; 
+            background: var(--gradient-primary); z-index: 200; 
+            box-shadow: 2px 0 15px rgba(161, 196, 253, 0.5); 
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        nav {
+            padding: 24px 40px; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass);
+            position: sticky; top: 0; z-index: 100;
         }
 
-        .hero h2 {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 20px;
+        .logo {
+            font-size: 1.6rem; font-weight: 800; background: var(--gradient-primary);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            cursor: pointer; letter-spacing: -0.5px;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 30px;
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; flex: 1; width: 100%; }
+
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; letter-spacing: -1.5px; }
+        .subtitle { color: var(--text-muted); font-size: 1.25rem; margin-bottom: 3rem; font-weight: 500; }
+
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glass);
+            padding: 8px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 600;
+            color: #fbd38d; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 5px;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: background 0.3s ease;
-        }
-
-        .btn:hover {
-            background: var(--accent-hover);
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-
-        .pricing-grid {
+        .layout-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            align-items: center;
+            grid-template-columns: 1fr;
+            gap: 40px;
         }
 
-        .card {
-            background: var(--bg-card);
-            border-radius: 10px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        @media(min-width: 900px) {
+            .layout-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        .control-panel {
+            background: var(--surface-glass); backdrop-filter: blur(30px);
+            padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-soft);
         }
 
-        .card.popular {
-            border: 2px solid var(--highlight);
-            transform: scale(1.05);
-            position: relative;
-            background: linear-gradient(145deg, #1e293b, #0f172a);
+        .category-selector { margin-bottom: 35px; }
+        .category-title-label { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+        
+        .toggles-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        
+        /* Checkbox Bubbles (Add-ons) */
+        .cat-label {
+            background: rgba(255,255,255,0.05); padding: 12px 20px; border-radius: 30px;
+            cursor: pointer; font-size: 0.9rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease; color: var(--text-muted); display: block;
+        }
+        .cat-checkbox { display: none; }
+        .cat-checkbox:checked + .cat-label { background: var(--text-main); color: #0f172a; border-color: var(--text-main); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,255,255,0.1);}
+
+        /* Radio Bubbles (Packages) */
+        .priority-label {
+            background: rgba(255,255,255,0.05); padding: 12px 24px; border-radius: 30px;
+            cursor: pointer; font-size: 0.95rem; font-weight: 600; border: 2px solid transparent;
+            transition: all 0.3s ease; color: var(--text-muted); display: block;
+        }
+        .priority-radio { display: none; }
+        input[value="express"]:checked + .priority-label { border-color: #cbd5e1; color: #cbd5e1; background: rgba(203, 213, 225, 0.1); box-shadow: 0 10px 20px rgba(203, 213, 225, 0.1); transform: translateY(-2px); }
+        input[value="signature"]:checked + .priority-label { border-color: #fbd38d; color: #fbd38d; background: rgba(251, 211, 141, 0.1); box-shadow: 0 10px 20px rgba(251, 211, 141, 0.1); transform: translateY(-2px); }
+        input[value="premium"]:checked + .priority-label { border-color: #a1c4fd; color: #a1c4fd; background: rgba(161, 196, 253, 0.1); box-shadow: 0 10px 20px rgba(161, 196, 253, 0.1); transform: translateY(-2px); }
+
+        .price-wrap { text-align: center; margin-top: 20px; padding-top: 30px; border-top: 1px solid var(--border-glass); }
+        .budget-display { font-size: 4.5rem; font-weight: 800; margin-bottom: 5px; letter-spacing: -2px; line-height: 1; }
+        .time-display { color: var(--text-muted); font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; }
+
+        .primary-btn {
+            background: var(--text-main); color: #0f172a; border: none; padding: 18px 40px;
+            font-size: 1.1rem; font-weight: 800; border-radius: 40px; cursor: pointer;
+            transition: all 0.3s ease; width: 100%; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+        }
+        .primary-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(255, 255, 255, 0.25); }
+
+        .info-panel {
+            background: rgba(15, 23, 42, 0.3); border-radius: var(--radius-lg); border: 1px solid var(--border-glass);
+            overflow: hidden; display: flex; flex-direction: column;
         }
 
-        .card.popular:hover {
-            transform: scale(1.05) translateY(-5px);
+        .stock-img {
+            width: 100%; height: 250px; object-fit: cover;
+            border-bottom: 1px solid var(--border-glass);
         }
 
-        .badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--highlight);
-            color: var(--bg-dark);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
+        .features-list { padding: 40px; flex: 1; }
+        .features-list h3 { font-size: 1.5rem; margin-bottom: 20px; color: #a1c4fd; }
+        .features-list ul { list-style: none; }
+        .features-list li { margin-bottom: 15px; padding-left: 28px; position: relative; font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); }
+        .features-list li::before { content: '✓'; color: #a1c4fd; position: absolute; left: 0; font-weight: bold; font-size: 1.1rem; }
+        .features-list li strong { color: var(--text-main); }
 
-        .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
+        .contact-section { margin-top: 60px; background: var(--surface-glass); border-radius: var(--radius-lg); padding: 40px; border: 1px solid var(--border-glass); display: flex; flex-wrap: wrap; gap: 40px; align-items: center; }
+        .contact-info { flex: 1; min-width: 300px; }
+        .contact-info h2 { font-size: 2rem; margin-bottom: 15px; }
+        .contact-info p { color: var(--text-muted); margin-bottom: 10px; font-size: 1.1rem; }
+        .contact-info a { color: #a1c4fd; text-decoration: none; font-weight: 600; }
+        .map-container { flex: 1; min-width: 300px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border-glass); height: 250px; }
 
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 5px;
-        }
-
-        .time {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            display: block;
-        }
-
-        .features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 30px;
-        }
-
-        .features li {
-            margin-bottom: 15px;
-            padding-left: 25px;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .features li::before {
-            content: '✓';
-            color: var(--accent);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .popular .features li::before {
-            color: var(--highlight);
-        }
-
-        .includes-text {
-            color: var(--highlight);
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-align: left;
-            font-size: 0.9rem;
-        }
-
-        /* Add-ons Section */
-        .addons {
-            background: #111827;
-            padding: 60px 0;
-        }
-
-        .addons-box {
-            background: var(--bg-card);
-            border-radius: 10px;
-            padding: 40px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .addons-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .addon-item {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px dashed rgba(255,255,255,0.2);
-            padding-bottom: 10px;
-        }
-
-        .addon-notice {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 20px;
-            font-style: italic;
-        }
-
-        /* Testimonials Placeholder */
-        .testimonials {
-            padding: 80px 0;
-            text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)), 
-                        url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1920&auto=format&fit=crop') center/cover fixed;
-        }
-
-        .testimonial-stars {
-            color: var(--highlight);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        /* Contact & Map */
-        .contact-section {
-            padding: 80px 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .contact-info h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-info p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .contact-info strong {
-            color: var(--accent);
-        }
-
-        .map-container {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid var(--bg-card);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #020617;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .card.popular { transform: scale(1); }
-            .card.popular:hover { transform: translateY(-5px); }
-            .contact-grid { grid-template-columns: 1fr; }
+            body { padding-left: 10px; }
+            #left-color-bar { width: 3px; }
+            nav { padding: 15px 20px; }
+            .container { padding: 30px 15px; }
+            h1 { font-size: 2.2rem; }
+            .control-panel, .features-list, .contact-section { padding: 25px; }
+            .budget-display { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="container hero-content">
-            <h1>J.E.M Signature Detailing</h1>
-            <h2>Mobile Interior Detailing — Done in 20-45 Minutes</h2>
-            <p>We come to your home, office, apartment, or gym. Premium detailing services without the hassle of leaving your location.</p>
-            <a href="#contact" class="btn">Book Your Detail</a>
-        </div>
-    </header>
+    <div id="left-color-bar"></div>
 
-    <section class="pricing" id="packages">
-        <div class="container">
-            <h2 class="section-title">Select Your Package</h2>
-            <div class="pricing-grid">
+    <nav>
+        <div class="logo">J.E.M Signature Detailing</div>
+    </nav>
+
+    <div class="container">
+        <div class="hero-pill">
+            <span>⏱️</span>
+            <span>Interior Only • Done in an hour or less</span>
+        </div>
+        <h1>Mobile Interior Detailing.</h1>
+        <p class="subtitle">We come directly to your home, office, apartment, or gym. Build your package below.</p>
+        
+        <div class="layout-grid">
+            
+            <div class="control-panel">
+                <div class="category-selector">
+                    <div class="category-title-label">Select Package</div>
+                    <div class="toggles-grid">
+                        <label>
+                            <input type="radio" name="package" value="express" class="priority-radio">
+                            <div class="priority-label">Express ($39)</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="package" value="signature" class="priority-radio" checked>
+                            <div class="priority-label">Signature ⭐ ($69)</div>
+                        </label>
+                        <label>
+                            <input type="radio" name="package" value="premium" class="priority-radio">
+                            <div class="priority-label">Premium ($99)</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="category-selector" style="margin-bottom: 0;">
+                    <div class="category-title-label">Optional Add-Ons</div>
+                    <div class="toggles-grid">
+                        <label>
+                            <input type="checkbox" class="cat-checkbox addon-toggle" value="15">
+                            <div class="cat-label">Interior Protectant (+$15)</div>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="cat-checkbox addon-toggle" value="20">
+                            <div class="cat-label">Leather Conditioning (+$20)</div>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="cat-checkbox addon-toggle" value="20">
+                            <div class="cat-label">Fabric Protectant (+$20)</div>
+                        </label>
+                        <label>
+                            <input type="checkbox" class="cat-checkbox addon-toggle" value="15">
+                            <div class="cat-label">Rubber Mats Clean (+$15)</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="price-wrap">
+                    <div class="category-title-label">Estimated Total</div>
+                    <div class="budget-display" id="totalPrice">$69</div>
+                    <div class="time-display" id="timeEstimate">⏱ 30-40 Minutes</div>
+                    <button class="primary-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Book Appointment</button>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1000&auto=format&fit=crop" alt="Car Interior Detailing" class="stock-img">
                 
-                <div class="card">
-                    <h3>Express Interior</h3>
-                    <div class="price">$39</div>
-                    <span class="time">⏱ 20-30 Minutes</span>
-                    <ul class="features">
-                        <li><strong>Full Interior Vacuum:</strong> Floor, seats, and crevices.</li>
-                        <li><strong>Dashboard Wipe Down:</strong> Light cleaning of dashboard surfaces.</li>
-                        <li><strong>Center Console Cleaning:</strong> Console area and cup holders wiped and cleaned.</li>
-                        <li><strong>Interior Glass Cleaning:</strong> Quick wipe of interior windows and mirrors.</li>
-                        <li><strong>Light Interior Deodorizing:</strong> Leaves interior smelling fresh.</li>
-                    </ul>
+                <div class="features-list">
+                    <h3 id="packageTitle">Signature Interior Includes:</h3>
+                    <ul id="featuresList">
+                        </ul>
                 </div>
-
-                <div class="card popular">
-                    <div class="badge">MOST POPULAR ⭐</div>
-                    <h3>Signature Interior</h3>
-                    <div class="price">$69</div>
-                    <span class="time">⏱ 30-40 Minutes</span>
-                    <p class="includes-text">+ Includes Everything in Express</p>
-                    <ul class="features">
-                        <li><strong>Door Panel Cleaning:</strong> All interior door panels wiped and cleaned.</li>
-                        <li><strong>Seat Wipe Down:</strong> Cloth or leather seats cleaned.</li>
-                        <li><strong>Floor Mat Cleaning:</strong> Rubber or cloth mats cleaned.</li>
-                        <li><strong>Steering Wheel & Touch Points:</strong> Sanitized and cleaned.</li>
-                        <li><strong>Light Interior Protectant:</strong> Applied to dashboard and plastic surfaces.</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Premium Interior</h3>
-                    <div class="price">$99</div>
-                    <span class="time">⏱ 40-45 Minutes</span>
-                    <p class="includes-text">+ Includes Everything in Signature</p>
-                    <ul class="features">
-                        <li><strong>Seat Shampoo (Cloth):</strong> Cloth seats cleaned and shampooed.</li>
-                        <li><strong>Seat Conditioned (Leather):</strong> Leather seats cleaned and conditioned.</li>
-                        <li><strong>Carpet Spot Treatment:</strong> Treats visible stains and heavy traffic areas.</li>
-                        <li><strong>Deep Crevice Cleaning:</strong> Specialized detailing brushes for hard-to-reach areas.</li>
-                        <li><strong>Steam Cleaning:</strong> Sanitizes tight crevices and air vents, removing dust and buildup.</li>
-                    </ul>
-                </div>
-
             </div>
-        </div>
-    </section>
 
-    <section class="addons">
-        <div class="container">
-            <div class="addons-box">
-                <h2 style="text-align: center; margin-bottom: 30px;">Add-Ons +</h2>
-                <div class="addons-list">
-                    <div class="addon-item">
-                        <span>Interior Protectant Upgrade</span>
-                        <strong>$15</strong>
-                    </div>
-                    <div class="addon-item">
-                        <span>Seats Leather Conditioning</span>
-                        <strong>$20</strong>
-                    </div>
-                    <div class="addon-item">
-                        <span>Fabric Protectant & Stain Repellent (1 yr)</span>
-                        <strong>$20</strong>
-                    </div>
-                    <div class="addon-item">
-                        <span>Rubber Floor Mats Deep Clean</span>
-                        <strong>$15</strong>
-                    </div>
-                </div>
-                <p class="addon-notice">* Notify your detailer if you wish to add these services to your package.</p>
-            </div>
         </div>
-    </section>
 
-    <section class="testimonials">
-        <div class="container">
-            <div class="testimonial-stars">★★★★★</div>
-            <h2 class="section-title" style="margin-bottom: 20px;">Discover Why Our Clients Love Us ⤴️</h2>
-            <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">
-                "J.E.M came right to my office while I worked. The car looked like it just rolled off the lot by the time I took my lunch break. Absolutely flawless." <br><br><strong>- Recent Client</strong>
-            </p>
-        </div>
-    </section>
-
-    <section class="contact-section" id="contact">
-        <div class="container contact-grid">
+        <div class="contact-section" id="contact">
             <div class="contact-info">
                 <h2>Get In Touch</h2>
-                <p>We are a mobile detailing unit servicing West Des Moines and surrounding areas. We bring our own tools directly to your location.</p>
+                <p>Ready to book? Let your detailer know which package and add-ons you selected when you reach out.</p>
                 <br>
-                <p>📍 <strong>Location:</strong> West Des Moines, IA 50266</p>
-                <p>📞 <strong>Phone:</strong> <a href="tel:5154804372">(515) 480-4372</a></p>
-                <p>✉️ <strong>Email:</strong> <a href="mailto:jemsignaturedetailing@gmail.com">jemsignaturedetailing@gmail.com</a></p>
+                <p>📍 West Des Moines, IA 50266</p>
+                <p>📞 <a href="tel:5154804372">(515) 480-4372</a></p>
+                <p>✉️ <a href="mailto:jemsignaturedetailing@gmail.com">jemsignaturedetailing@gmail.com</a></p>
             </div>
-            
             <div class="map-container">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47754.67384661073!2d-93.8052478!3d41.5647007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87ee9b006093ca59%3A0x8bb8562d98dc2288!2sWest%20Des%20Moines%2C%20IA%2050266!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
-                    width="100%" 
-                    height="350" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
+                    width="100%" height="100%" style="border:0;" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <p>© 2024 J.E.M Signature Detailing. All Rights Reserved.</p>
-    </footer>
+    </div>
 
+    <script>
+        // Package Data Configuration
+        const packages = {
+            express: {
+                price: 39,
+                time: "⏱ 20-30 Minutes",
+                title: "Express Interior Includes:",
+                features: [
+                    "<strong>Full Interior Vacuum:</strong> Floor, seats, and crevices.",
+                    "<strong>Dashboard Wipe Down:</strong> Light cleaning of dashboard surfaces.",
+                    "<strong>Center Console Cleaning:</strong> Console area and cup holders wiped and cleaned.",
+                    "<strong>Interior Glass Cleaning:</strong> Quick wipe of interior windows and mirrors.",
+                    "<strong>Light Interior Deodorizing:</strong> Leaves interior smelling fresh."
+                ]
+            },
+            signature: {
+                price: 69,
+                time: "⏱ 30-40 Minutes",
+                title: "Signature Interior ⭐ Includes:",
+                features: [
+                    "<span style='color: #fbd38d;'>Everything in Express, PLUS:</span>",
+                    "<strong>Door Panel Cleaning:</strong> All interior door panels wipes and cleaned.",
+                    "<strong>Seat Wipe Down:</strong> Cloth or leather seats cleaned.",
+                    "<strong>Floor Mat Cleaning:</strong> Rubber or cloth mats cleaned.",
+                    "<strong>Steering Wheel & Touch Points Sanitized:</strong> All viewable surfaces wiped.",
+                    "<strong>Light Interior Protectant:</strong> Protectant applied to dashboard/plastics."
+                ]
+            },
+            premium: {
+                price: 99,
+                time: "⏱ 40-45 Minutes",
+                title: "Premium Interior Includes:",
+                features: [
+                    "<span style='color: #a1c4fd;'>Everything in Signature, PLUS:</span>",
+                    "<strong>Seat Shampoo (Cloth):</strong> Cloth seats cleaned and shampooed.",
+                    "<strong>Seat Conditioned (Leather):</strong> Leather seats cleaned and conditioned.",
+                    "<strong>Carpet Spot Treatment:</strong> Treats visible stains and heavy traffic areas.",
+                    "<strong>Deep Crevice Cleaning:</strong> Specialized brushes for hard-to-reach areas.",
+                    "<strong>Steam Cleaning:</strong> Professional steam to sanitize tight crevices and air vents."
+                ]
+            }
+        };
+
+        // DOM Elements
+        const packageRadios = document.querySelectorAll('input[name="package"]');
+        const addonCheckboxes = document.querySelectorAll('.addon-toggle');
+        const priceDisplay = document.getElementById('totalPrice');
+        const timeDisplay = document.getElementById('timeEstimate');
+        const packageTitle = document.getElementById('packageTitle');
+        const featuresList = document.getElementById('featuresList');
+
+        // Update UI Function
+        function updateUI() {
+            // Get selected package
+            const selectedPackageId = document.querySelector('input[name="package"]:checked').value;
+            const packageData = packages[selectedPackageId];
+
+            // Calculate Add-ons
+            let addonsTotal = 0;
+            addonCheckboxes.forEach(cb => {
+                if(cb.checked) addonsTotal += parseInt(cb.value);
+            });
+
+            // Update Price and Time
+            const grandTotal = packageData.price + addonsTotal;
+            priceDisplay.textContent = `$${grandTotal}`;
+            timeDisplay.textContent = packageData.time;
+
+            // Update Features Text
+            packageTitle.textContent = packageData.title;
+            featuresList.innerHTML = packageData.features.map(f => `<li>${f}</li>`).join('');
+        }
+
+        // Event Listeners
+        packageRadios.forEach(radio => radio.addEventListener('change', updateUI));
+        addonCheckboxes.forEach(cb => cb.addEventListener('change', updateUI));
+
+        // Initial Load
+        updateUI();
+    </script>
 </body>
 </html>
-
